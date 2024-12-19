@@ -1,0 +1,11 @@
+[user]
+	email = me@ryanharman.dev 
+	name = Ryan Harman
+[push]
+  autoSetupRemote = true
+[pull]
+  rebase = false
+[rerere]
+	enabled = true
+[protocol "file"]
+	allow = always
