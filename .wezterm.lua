@@ -25,6 +25,12 @@ return {
 	term = "xterm-256color",
 	color_scheme = scheme_for_appearance(wezterm.gui.get_appearance()),
 	max_fps = 160,
+	window_padding = {
+		left = 2,
+		right = 2,
+		top = 2,
+		bottom = 0,
+	  }
 	-- send_composed_key_when_left_alt_is_pressed = true,
 	-- send_composed_key_when_right_alt_is_pressed = false,
 }
