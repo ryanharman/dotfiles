@@ -4,6 +4,7 @@ return {
 		lazy = true,
 		keys = {
 			{ "<C-g>", "<CMD>DiffviewOpen<CR>", mode = { "n", "i", "v" } },
+			{ "<leader>gv", "<CMD>DiffviewOpen<CR>", mode = { "n" } },
 		},
 		config = {
 			file_panel = {
@@ -14,11 +15,9 @@ return {
 			keymaps = {
 				view = {
 					["<C-g>"] = "<CMD>DiffviewClose<CR>",
-					-- ["c"] = "<CMD>DiffviewClose|Neogit commit<CR>",
 				},
 				file_panel = {
 					["<C-g>"] = "<CMD>DiffviewClose<CR>",
-					-- ["c"] = "<CMD>DiffviewClose|Neogit commit<CR>",
 				},
 			},
 		},
