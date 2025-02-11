@@ -3,8 +3,8 @@ return {
 		"sindrets/diffview.nvim",
 		lazy = true,
 		keys = {
-			{ "<C-g>", "<CMD>DiffviewOpen<CR>", mode = { "n", "i", "v" } },
-			{ "<leader>gv", "<CMD>DiffviewOpen<CR>", mode = { "n" } },
+			{ "<C-g>", "<CMD>DiffviewOpen<CR>", mode = { "n", "i", "v" }, desc = "Open diffview" },
+			{ "<leader>gv", "<CMD>DiffviewOpen<CR>", mode = { "n" }, desc = "Open diffview" },
 		},
 		config = {
 			file_panel = {
