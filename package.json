@@ -1,0 +1,15 @@
+{
+	"name": "dotfiles",
+	"module": "index.ts",
+	"type": "module",
+	"scripts": {
+		"symlink": "bash ./symlink-dotfiles.sh"
+	},
+	"devDependencies": {
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	}
+}
+
