@@ -95,7 +95,6 @@ export EDITOR='vim'
 # - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 
-alias vim = "nvim"
 alias ga="git add"
 alias gs="git status"
 alias gc="git commit"
@@ -104,3 +103,7 @@ alias gp="git push origin"
 alias gr="git pull --rebase origin"
 alias gb="git branch"
 alias lines="git ls-files | xargs cat | wc -l"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -66,9 +66,7 @@ return {
 				-- ts_ls = {},
 				tailwindcss = {},
 				eslint = {},
-				biome = {},
 				intelephense = {},
-				prettier = {},
 				prettierd = {},
 
 				lua_ls = {
