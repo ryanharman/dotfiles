@@ -1,7 +1,7 @@
 -- vim.opt.backspace = "2"
 vim.opt.autoread = true
 vim.opt.autowrite = true
-vim.opt.cmdheight = 1
+vim.opt.cmdheight = 0
 vim.opt.cursorline = true
 vim.opt.expandtab = true
 -- vim.opt.ignorecase = true
