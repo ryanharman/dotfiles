@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	end,
 })
 
--- There are to hide the status line when not in use
+-- These are to hide the status line when not in use
 vim.api.nvim_create_autocmd("CmdlineEnter", {
 	group = vim.api.nvim_create_augroup("cmdheight_1_on_cmdlineenter", { clear = true }),
 	desc = "Don't hide the status line when typing a command",

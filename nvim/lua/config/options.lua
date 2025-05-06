@@ -20,3 +20,4 @@ vim.opt.signcolumn = "yes"
 vim.opt.tabstop = 2
 vim.opt.undofile = true
 vim.opt.updatetime = 100
+vim.opt.laststatus = 3

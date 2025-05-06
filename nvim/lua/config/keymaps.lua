@@ -31,9 +31,10 @@ keymap("n", "X", '"_X', silent)
 keymap("v", "x", '"_x', silent)
 keymap("v", "X", '"_X', silent)
 
--- Save file by CTRL-S
-keymap("n", "<C-s>", ":w<CR>", silent)
-keymap("i", "<C-s>", "<ESC> :w<CR>", silent)
-
 -- Show diagnostics
 keymap("n", "<leader>dd", "<cmd>lua vim.diagnostic.open_float()<CR>", silent)
+
+-- Copy to system clipboard
+keymap("n", "<leader>y", '"+y', silent)
+-- Paste from system clipboard
+keymap("n", "<leader>p", '"+p', silent)

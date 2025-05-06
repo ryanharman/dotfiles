@@ -4,5 +4,6 @@ font-family = JetBrainsMono Nerd Font
 mouse-hide-while-typing = true
 confirm-close-surface = false
 cursor-style = block
-adjust-cell-height = 35%
-
+adjust-cell-height = 20%
+window-padding-y = 2,0
+window-padding-balance = true
