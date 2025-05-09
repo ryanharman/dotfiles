@@ -7,3 +7,4 @@ cursor-style = block
 adjust-cell-height = 20%
 window-padding-y = 2,0
 window-padding-balance = true
+macos-option-as-alt = left

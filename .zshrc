@@ -70,7 +70,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git npm autojump zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
+plugins=(git npm zsh-autosuggestions zsh-syntax-highlighting zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -86,6 +86,16 @@ export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
+
+
+# Custom prompt of `filepath | git_branch`
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+zstyle ':vcs_info:git:*' formats '%b '
+
+setopt PROMPT_SUBST
+PROMPT='%F{blue}%~%f | %F{red}${vcs_info_msg_0_}%f$ '
 
 # Set personal aliases, overriding those provided by Oh My Zsh libs,
 # plugins, and themes. Aliases can be placed here, though Oh My Zsh
