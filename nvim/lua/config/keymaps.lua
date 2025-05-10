@@ -19,7 +19,7 @@ keymap("n", "<C-j>", "<C-w><C-j>", { desc = "Move to lower split" })
 keymap("n", "<C-k>", "<C-w><C-k>", { desc = "Move to upper split" })
 
 -- Clipboard
-keymap("n", "<leader>y", '"+y', { desc = "Yank to system clipboard", silent = true })
+keymap({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to system clipboard", silent = true })
 keymap("n", "<leader>p", '"+p', { desc = "Paste from system clipboard", silent = true })
 
 -- Delete without yanking

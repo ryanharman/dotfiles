@@ -19,14 +19,13 @@ return {
 	keys = {
 		{ "<leader>ta", "<CMD>Neotest run<CR>", mode = "n", desc = "Neotest" },
 		{
-			"<leader>tt",
+			"<leader>tf",
 			function()
 				require("neotest").run.run(vim.fn.expand("%"))
 			end,
 			mode = "n",
 			desc = "Neotest File",
 		},
-		-- { "<leader>tT", "<CMD>Neotest run %<CR>", mode = "n", desc = "Neotest File" },
 		{ "<leader>tw", "<CMD>Neotest watch<CR>", mode = "n", desc = "Neotest Watch" },
 		{ "<leader>ts", "<CMD>Neotest summary<CR>", mode = "n", desc = "Neotest Summary" },
 		{ "<leader>to", "<CMD>Neotest output<CR>", mode = "n", desc = "Neotest Output" },
