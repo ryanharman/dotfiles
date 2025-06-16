@@ -23,6 +23,11 @@ return {
 			return (result and result ~= "") and " " .. result or "⎇"
 		end
 
+		-- ⌚ Clock
+		local function clock()
+			return os.date("%H:%M")
+		end
+
 		-- 📂 Breadcrumb-style filename
 		-- local function breadcrumb_filename()
 		-- 	local filepath = vim.api.nvim_buf_get_name(0)
@@ -69,7 +74,7 @@ return {
 					local location = "%2l:%-2v"
 
 					return table.concat({
-						" " .. filename .. " | " .. git,
+						clock() .. " | " .. filename .. " | " .. git,
 						"%=" .. "  " .. fileinfo .. " | " .. location .. " ",
 					}, " ")
 				end,

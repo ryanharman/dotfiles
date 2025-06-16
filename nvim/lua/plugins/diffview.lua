@@ -5,6 +5,7 @@ return {
 		keys = {
 			{ "<C-g>", "<CMD>DiffviewOpen<CR>", mode = { "n", "i", "v" }, desc = "Open diffview" },
 			{ "<leader>gv", "<CMD>DiffviewOpen<CR>", mode = { "n" }, desc = "Open diffview" },
+			{ "<leader>gd", "<CMD>DiffviewOpen main...HEAD<CR>", desc = "Diff current branch against main" },
 		},
 		config = {
 			file_panel = {
