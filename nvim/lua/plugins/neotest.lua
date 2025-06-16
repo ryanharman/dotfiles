@@ -63,19 +63,13 @@ local function get_test_adapters()
 			adapters,
 			require("neotest-jest")({
 				jestCommand = "npx jest --coverage --maxWorkers=4",
-				-- jestConfigFile = "jest.config.js", -- Uncomment if needed
 			})
 		)
 		vim.notify("Neotest: Using Jest adapter", vim.log.levels.INFO, { title = "Neotest" })
 	end
 
 	if has_vitest then
-		table.insert(
-			adapters,
-			require("neotest-vitest")({
-				-- vitestCommand = "npm test --", -- Uncomment if needed
-			})
-		)
+		table.insert(adapters, require("neotest-vitest")({}))
 		vim.notify("Neotest: Using Vitest adapter", vim.log.levels.INFO, { title = "Neotest" })
 	end
 
@@ -111,25 +105,14 @@ return {
 			mode = "n",
 			desc = "Neotest File",
 		},
-		-- {
-		-- 	"<leader>tn",
-		-- 	function()
-		-- 		-- This attempts to run the nearest test.
-		-- 		-- Requires Treesitter parsers for your language (JS/TS)
-		-- 		require("neotest").run.run_nearest()
-		-- 	end,
-		-- 	mode = "n",
-		-- 	desc = "Neotest Run Nearest (it/test block)",
-		-- },
-		-- {
-		-- 	"<leader>td",
-		-- 	function()
-		-- 		-- Debug the nearest test. Requires nvim-dap and a DAP adapter.
-		-- 		require("neotest").run.run_nearest({ strategy = "dap" })
-		-- 	end,
-		-- 	mode = "n",
-		-- 	desc = "Neotest Debug Nearest",
-		-- },
+		{
+			"<leader>tn",
+			function()
+				require("neotest").run.run()
+			end,
+			mode = "n",
+			desc = "Neotest Run Nearest (it/test block)",
+		},
 	},
 	config = function()
 		require("neotest").setup({
