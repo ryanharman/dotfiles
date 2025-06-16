@@ -43,6 +43,26 @@ return {
 		-- 	return table.concat(parts, " › ")
 		-- end
 
+		local function diagnostics_summary()
+			local icons = { error = "", warn = "" }
+			local bufnr = vim.api.nvim_get_current_buf()
+
+			local counts = {
+				error = #vim.diagnostic.get(bufnr, { severity = vim.diagnostic.severity.ERROR }),
+				warn = #vim.diagnostic.get(bufnr, { severity = vim.diagnostic.severity.WARN }),
+			}
+
+			local result = {}
+			if counts.error > 0 then
+				table.insert(result, icons.error .. " " .. counts.error)
+			end
+			if counts.warn > 0 then
+				table.insert(result, icons.warn .. " " .. counts.warn)
+			end
+
+			return table.concat(result, " ")
+		end
+
 		-- Filename only
 		local function filename_only()
 			local filepath = vim.api.nvim_buf_get_name(0)
@@ -72,10 +92,11 @@ return {
 					local git = git_branch()
 					local fileinfo = statusline.section_fileinfo({})
 					local location = "%2l:%-2v"
+					local diagnostics = diagnostics_summary()
 
 					return table.concat({
 						clock() .. " | " .. filename .. " | " .. git,
-						"%=" .. "  " .. fileinfo .. " | " .. location .. " ",
+						"%=" .. diagnostics .. " | " .. fileinfo .. " | " .. location .. " ",
 					}, " ")
 				end,
 				inactive = nil,
