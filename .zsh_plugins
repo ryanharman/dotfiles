@@ -1,0 +1,15 @@
+getantidote/use-omz
+
+# OMZ Plugins (enabled to be used from above plugin)
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/gh
+ohmyzsh/ohmyzsh path:plugins/npm
+ohmyzsh/ohmyzsh path:plugins/nvm
+ohmyzsh/ohmyzsh path:plugins/golang
+ohmyzsh/ohmyzsh path:plugins/ssh
+
+# Custom plugins
+zsh-users/zsh-completions path:src kind:fpath
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-history-substring-search
+zdharma-continuum/fast-syntax-highlighting

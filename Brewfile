@@ -1,5 +1,6 @@
 tap "oven-sh/bun"
 tap "sst/tap"
+brew "antidote"
 brew "awscli"
 brew "gh"
 brew "git"
