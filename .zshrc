@@ -120,3 +120,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # sst
 export PATH=$HOME/.sst/bin:$PATH
+
+# python env
+alias python=/usr/bin/python3
