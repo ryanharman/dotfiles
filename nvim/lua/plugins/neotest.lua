@@ -53,6 +53,7 @@ local function get_test_adapters()
 	local vitest_config_files = {
 		"vitest.config.js",
 		"vitest.config.ts",
+		"vitest.config.mts",
 		"vitest.config.mjs",
 		"vitest.config.cjs",
 	}

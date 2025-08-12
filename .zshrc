@@ -36,6 +36,7 @@ alias gr="git pull --rebase origin"
 alias gb="git branch"
 alias lines="git ls-files | xargs cat | wc -l"
 alias nv="nvim"
+alias rebase-main='git fetch origin main && git rebase origin/main'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

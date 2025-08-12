@@ -1,6 +1,7 @@
 return {
 	{
 		"neovim/nvim-lspconfig",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			{ "mason-org/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
 			"mason-org/mason-lspconfig.nvim",
@@ -52,10 +53,15 @@ return {
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 			local servers = {
-				-- ts_ls = {},
-				tailwindcss = {},
+				-- ts_ls handled by typescript-tools.nvim
+				tailwindcss = {
+					settings = {
+						tailwindCSS = {
+							validate = false,
+						},
+					},
+				},
 				eslint = {},
-				intelephense = {},
 				prettierd = {},
 
 				lua_ls = {

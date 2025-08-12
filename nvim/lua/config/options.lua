@@ -12,7 +12,12 @@ vim.opt.numberwidth = 1
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 10
-vim.opt.updatetime = 100
+vim.opt.updatetime = 250
+
+-- Performance optimizations
+vim.opt.lazyredraw = true
+vim.opt.synmaxcol = 240
+vim.opt.redrawtime = 1500
 
 -- Indentation and formatting
 vim.opt.expandtab = true

@@ -1,9 +1,10 @@
 return {
 	"pmizio/typescript-tools.nvim",
 	dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+	ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
 	opts = {
 		settings = {
-			separate_diagnostic_server = true,
+			separate_diagnostic_server = false,
 			-- array of strings("fix_all"|"add_missing_imports"|"remove_unused"|
 			-- "remove_unused_imports"|"organize_imports") -- or string "all"
 			-- to include all supported code actions

@@ -1,6 +1,12 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	tag = "0.1.8",
+	cmd = "Telescope",
+	keys = {
+		{ "<leader>ff", desc = "Find files" },
+		{ "<leader>fi", desc = "Find in files" },
+		{ "<leader>fb", desc = "Buffers" },
+	},
 	-- or                              , branch = '0.1.x',
 	dependencies = { "nvim-lua/plenary.nvim", "tsakirist/telescope-lazy.nvim", "andrew-george/telescope-themes" },
 	config = function()

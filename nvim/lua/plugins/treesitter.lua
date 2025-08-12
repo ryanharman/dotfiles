@@ -2,25 +2,20 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
+		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			local configs = require("nvim-treesitter.configs")
 
 			configs.setup({
 				ensure_installed = {
-					"astro",
 					"html",
 					"javascript",
 					"typescript",
 					"tsx",
-					"graphql",
-					"prisma",
-					"svelte",
 					"lua",
 					"vim",
 					"vimdoc",
-					"php",
 					"dockerfile",
-					"go",
 					"json",
 				},
 				sync_install = false,
@@ -31,4 +26,3 @@ return {
 		end,
 	},
 }
-
