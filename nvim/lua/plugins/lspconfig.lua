@@ -61,7 +61,12 @@ return {
 						},
 					},
 				},
-				eslint = {},
+				eslint = {
+					filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+					settings = {
+						workingDirectory = { mode = "auto" },
+					},
+				},
 				prettierd = {},
 
 				lua_ls = {
