@@ -37,6 +37,7 @@ alias gb="git branch"
 alias lines="git ls-files | xargs cat | wc -l"
 alias nv="nvim"
 alias rebase-main='git fetch origin main && git rebase origin/main'
+alias $dotfiles="cd $HOME/repos/dotfiles"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

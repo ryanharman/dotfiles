@@ -14,8 +14,13 @@ return {
 	config = function(_, opts)
 		require("snacks").setup(opts)
 
-		-- Keymap: Toggle Snacks terminal with <leader>tt
-		vim.keymap.set("n", "<leader>tt", function()
+		-- Keymap: Toggle Snacks terminal with <C-t>
+		vim.keymap.set("n", "<C-t>", function()
+			require("snacks.terminal").toggle()
+		end, { desc = "Toggle Snacks Terminal" })
+		
+		-- Keymap: Close terminal from terminal mode with <C-t>
+		vim.keymap.set("t", "<C-t>", function()
 			require("snacks.terminal").toggle()
 		end, { desc = "Toggle Snacks Terminal" })
 	end,

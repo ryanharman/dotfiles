@@ -68,6 +68,7 @@ return {
 					},
 				},
 				prettierd = {},
+				biome = {},
 
 				lua_ls = {
 					settings = {
