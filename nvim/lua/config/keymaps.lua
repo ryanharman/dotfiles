@@ -30,3 +30,7 @@ keymap("v", "X", '"_X', silent)
 
 -- Diagnostics
 keymap("n", "<leader>dd", vim.diagnostic.open_float, { desc = "Show diagnostics", silent = true })
+
+-- Center window on C-d and C-u
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")

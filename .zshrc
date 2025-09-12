@@ -53,3 +53,6 @@ alias python=/usr/bin/python3
 # antidote (zsh plugin manager)
 source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 antidote load $HOME/repos/dotfiles/.zsh_plugins
+
+# Created by `pipx` on 2025-09-02 08:52:08
+export PATH="$PATH:/Users/ryanharman/.local/bin"
