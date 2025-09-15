@@ -79,6 +79,15 @@ return {
 						},
 					},
 				},
+				basedpyright = {
+					settings = {
+						basedpyright = {
+							analysis = {
+								typeCheckingMode = "standard",
+							},
+						},
+					},
+				},
 			}
 
 			require("mason").setup()
