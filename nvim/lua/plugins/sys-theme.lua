@@ -9,7 +9,7 @@ return {
 			vim.cmd.colorscheme("catppuccin-latte")
 			vim.api.nvim_set_option_value("background", "light", {})
 		end,
-		update_interval = 3000,
+		update_interval = 10000,
 		fallback = "dark",
 	},
 }

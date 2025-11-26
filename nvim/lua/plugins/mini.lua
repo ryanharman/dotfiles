@@ -1,29 +1,22 @@
 return {
 	"nvim-mini/mini.nvim",
 	config = function()
-		require("mini.comment").setup()
+		-- NOTE: mini.comment removed - using ts-comments.nvim for better JSX/TSX support
 		require("mini.pairs").setup()
-		-- require("mini.ai").setup()
 		require("mini.move").setup()
 
 		local statusline = require("mini.statusline")
 
-		-- 🧠 Git branch (Gitsigns or fallback)
+		-- Git branch (from gitsigns only - no shell fallback for performance)
 		local function git_branch()
 			local branch = vim.b.gitsigns_head
 			if branch and branch ~= "" then
-				return " " .. branch
+				return " " .. branch
 			end
-			local handle = io.popen("git rev-parse --abbrev-ref HEAD 2>/dev/null")
-			if not handle then
-				return "⎇"
-			end
-			local result = handle:read("*l")
-			handle:close()
-			return (result and result ~= "") and " " .. result or "⎇"
+			return ""
 		end
 
-		-- ⌚ Clock
+		-- Clock
 		local function clock()
 			return os.date("%H:%M")
 		end

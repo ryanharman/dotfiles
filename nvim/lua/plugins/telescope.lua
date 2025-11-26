@@ -8,7 +8,12 @@ return {
 		{ "<leader>fb", desc = "Buffers" },
 	},
 	-- or                              , branch = '0.1.x',
-	dependencies = { "nvim-lua/plenary.nvim", "tsakirist/telescope-lazy.nvim", "andrew-george/telescope-themes" },
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"tsakirist/telescope-lazy.nvim",
+		"andrew-george/telescope-themes",
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+	},
 	config = function()
 		local builtin = require("telescope.builtin")
 		vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
@@ -40,7 +45,11 @@ return {
 					"%.min%.mjs$",
 				},
 				mappings = {
-					n = { ["q"] = require("telescope.actions").close },
+					n = {
+						["q"] = function(bufnr)
+							require("telescope.actions").close(bufnr)
+						end,
+					},
 				},
 				path_display = { "smart" },
 			},
@@ -87,6 +96,7 @@ return {
 			},
 		})
 
+		require("telescope").load_extension("fzf")
 		require("telescope").load_extension("lazy")
 		require("telescope").load_extension("themes")
 	end,
