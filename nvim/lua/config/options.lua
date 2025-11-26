@@ -20,7 +20,6 @@ vim.opt.timeoutlen = 500
 vim.opt.ttimeoutlen = 10
 
 -- Performance optimizations
-vim.opt.lazyredraw = true
 vim.opt.synmaxcol = 240
 vim.opt.redrawtime = 1500
 vim.opt.maxmempattern = 5000

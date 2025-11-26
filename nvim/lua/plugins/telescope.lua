@@ -31,10 +31,18 @@ return {
 					width = 0.87,
 					height = 0.80,
 				},
-				file_ignore_patterns = { "node_modules" },
+				file_ignore_patterns = {
+					"node_modules",
+					".git/",
+					"dist/",
+					"build/",
+					"%.min%.js$",
+					"%.min%.mjs$",
+				},
 				mappings = {
 					n = { ["q"] = require("telescope.actions").close },
 				},
+				path_display = { "smart" },
 			},
 			extensions = {
 				-- Type information can be loaded via 'https://github.com/folke/lazydev.nvim'
@@ -83,4 +91,3 @@ return {
 		require("telescope").load_extension("themes")
 	end,
 }
-

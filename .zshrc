@@ -1,21 +1,12 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
-# Path to your Oh My Zsh installation.
+# Path to your Oh My Zsh installation (required for antidote's use-omz)
 export ZSH="$HOME/.oh-my-zsh"
 
-# Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to disable auto-setting terminal title.
+# OMZ configuration (applied before antidote loads OMZ)
+zstyle ':omz:update' mode reminder
 DISABLE_AUTO_TITLE="true"
 
-source $ZSH/oh-my-zsh.sh
-
-# Preferred editor for local and remote sessions
-export EDITOR='vim'
+# Preferred editor
+export EDITOR='nvim'
 
 # Custom prompt of `filepath | git_branch`
 autoload -Uz vcs_info
@@ -40,9 +31,18 @@ alias rebase-main='git fetch origin main && git rebase origin/main'
 
 dotfiles="$HOME/repos/dotfiles"
 
+# NVM lazy loading - only loads when nvm/node/npm/npx/yarn is called
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm_lazy_load() {
+  unset -f nvm node npm npx yarn
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+}
+nvm() { nvm_lazy_load; nvm "$@"; }
+node() { nvm_lazy_load; node "$@"; }
+npm() { nvm_lazy_load; npm "$@"; }
+npx() { nvm_lazy_load; npx "$@"; }
+yarn() { nvm_lazy_load; yarn "$@"; }
 
 # sst
 export PATH=$HOME/.sst/bin:$PATH
@@ -54,5 +54,5 @@ alias python=/usr/bin/python3
 source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
 antidote load $HOME/repos/dotfiles/.zsh_plugins
 
-# Created by `pipx` on 2025-09-02 08:52:08
-export PATH="$PATH:/Users/ryanharman/.local/bin"
+# pipx
+export PATH="$PATH:$HOME/.local/bin"

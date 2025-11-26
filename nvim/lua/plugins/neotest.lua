@@ -1,4 +1,3 @@
--- Helper function to check if a file exists
 local function file_exists(path)
 	local file = io.open(path, "r")
 	if file then
@@ -8,12 +7,35 @@ local function file_exists(path)
 	return false
 end
 
---- Checks for the existence of any file from a given list within a directory.
---- Special handling for package.json to check for a specific key.
---- @param directory string The directory to check within.
---- @param config_files table A list of file names to check for.
---- @param package_json_key string|nil An optional key to check in package.json.
---- @return boolean True if any of the config files are found (and package.json has the key if specified), false otherwise.
+local function find_workspace_packages(start_dir)
+	local workspace_file = start_dir .. "/pnpm-workspace.yaml"
+	
+	if not file_exists(workspace_file) then
+		return nil, {}
+	end
+	
+	local packages = {}
+	local content = vim.fn.readfile(workspace_file)
+	local in_packages = false
+	
+	for _, line in ipairs(content) do
+		if line:match("^packages:") then
+			in_packages = true
+		elseif in_packages and line:match("^%s*-%s*'(.+)'") then
+			local pattern = line:match("^%s*-%s*'(.+)'")
+			local glob_pattern = start_dir .. "/" .. pattern
+			local dirs = vim.fn.glob(glob_pattern, false, true)
+			for _, dir in ipairs(dirs) do
+				table.insert(packages, dir)
+			end
+		elseif in_packages and line:match("^[^%s]") then
+			break
+		end
+	end
+	
+	return start_dir, packages
+end
+
 local function has_config(directory, config_files, package_json_key)
 	for _, file in ipairs(config_files) do
 		local full_path = directory .. "/" .. file
@@ -25,12 +47,31 @@ local function has_config(directory, config_files, package_json_key)
 					return true
 				end
 			elseif file ~= "package.json" or not package_json_key then
-				-- If it's not package.json, or if it is package.json but we don't
-				-- care about a specific key, then just its existence is enough.
 				return true
 			end
 		end
 	end
+	
+	local workspace_root, packages = find_workspace_packages(directory)
+	if workspace_root then
+		for _, pkg_dir in ipairs(packages) do
+			for _, file in ipairs(config_files) do
+				local full_path = pkg_dir .. "/" .. file
+				if file_exists(full_path) then
+					if file == "package.json" and package_json_key then
+						local package_json_content = vim.fn.readfile(full_path)
+						local success, decoded_json = pcall(vim.json.decode, table.concat(package_json_content, "\n"))
+						if success and decoded_json and decoded_json[package_json_key] then
+							return true
+						end
+					elseif file ~= "package.json" or not package_json_key then
+						return true
+					end
+				end
+			end
+		end
+	end
+	
 	return false
 end
 
@@ -70,7 +111,12 @@ local function get_test_adapters()
 	end
 
 	if has_vitest then
-		table.insert(adapters, require("neotest-vitest")({}))
+		table.insert(adapters, require("neotest-vitest")({
+			vitestCommand = "pnpm vitest",
+			cwd = function(path)
+				return require("lspconfig.util").root_pattern("vitest.config.js", "vitest.config.ts", "vitest.config.mts", "vitest.config.mjs", "vitest.config.cjs")(path)
+			end,
+		}))
 		vim.notify("Neotest: Using Vitest adapter", vim.log.levels.INFO, { title = "Neotest" })
 	end
 
@@ -90,7 +136,6 @@ return {
 	dependencies = {
 		"nvim-neotest/nvim-nio",
 		"nvim-lua/plenary.nvim",
-		"antoinemadec/FixCursorHold.nvim",
 		"nvim-treesitter/nvim-treesitter",
 		"nvim-neotest/neotest-jest",
 		"marilari88/neotest-vitest",

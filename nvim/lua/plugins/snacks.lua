@@ -18,7 +18,7 @@ return {
 		vim.keymap.set("n", "<C-t>", function()
 			require("snacks.terminal").toggle()
 		end, { desc = "Toggle Snacks Terminal" })
-		
+
 		-- Keymap: Close terminal from terminal mode with <C-t>
 		vim.keymap.set("t", "<C-t>", function()
 			require("snacks.terminal").toggle()

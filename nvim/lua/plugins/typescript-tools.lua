@@ -4,7 +4,7 @@ return {
 	ft = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
 	opts = {
 		settings = {
-			separate_diagnostic_server = false,
+			separate_diagnostic_server = true,
 			publish_diagnostic_on = "insert_leave",
 			expose_as_code_action = {},
 			tsserver_plugins = {},
