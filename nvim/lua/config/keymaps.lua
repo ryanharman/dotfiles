@@ -1,9 +1,6 @@
 local keymap = vim.keymap.set
 local silent = { silent = true }
 
--- Enable mouse
-vim.opt.mouse = "a"
-
 -- General
 -- Clear highlights on search with <leader>h
 keymap("n", "<leader>h", ":nohlsearch<CR>", { desc = "Clear search highlights" })
@@ -32,5 +29,5 @@ keymap("v", "X", '"_X', silent)
 keymap("n", "<leader>dd", vim.diagnostic.open_float, { desc = "Show diagnostics", silent = true })
 
 -- Center window on C-d and C-u
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+keymap("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
+keymap("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })

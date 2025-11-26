@@ -9,13 +9,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = "*",
-	callback = function(args)
-		require("conform").format({ bufnr = args.buf })
-	end,
-})
-
 -- Fix conceallevel for json files
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	group = vim.api.nvim_create_augroup("json_conceal", { clear = true }),

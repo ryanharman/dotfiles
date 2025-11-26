@@ -39,3 +39,6 @@ vim.opt.smartcase = true
 
 -- Command execution
 vim.opt.inccommand = "split"
+
+-- Input
+vim.opt.mouse = "a"
