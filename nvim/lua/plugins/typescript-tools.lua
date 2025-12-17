@@ -13,7 +13,8 @@ return {
 			complete_function_calls = false,
 			include_completions_with_insert_text = false,
 			jsx_close_tag = {
-				enable = false,
+				enable = true,
+				filetypes = { "typescriptreact", "javascriptreact" },
 			},
 			code_lens = "off",
 			disable_member_code_lens = true,

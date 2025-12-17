@@ -33,6 +33,10 @@ dotfiles="$HOME/repos/dotfiles"
 
 # NVM lazy loading - only loads when nvm/node/npm/npx/yarn is called
 export NVM_DIR="$HOME/.nvm"
+
+# Add default node to PATH for non-interactive use (Mason, LSPs, etc.)
+DEFAULT_NODE_VERSION=$(ls -1 "$NVM_DIR/versions/node" | tail -1)
+export PATH="$NVM_DIR/versions/node/$DEFAULT_NODE_VERSION/bin:$PATH"
 nvm_lazy_load() {
   unset -f nvm node npm npx yarn
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"

@@ -1,0 +1,233 @@
+{
+  // VIM MODE
+  "agent": {
+    "button": false,
+    "model_parameters": []
+  },
+  "collaboration_panel": {
+    "button": false
+  },
+  "notification_panel": {
+    "button": false
+  },
+  "outline_panel": {
+    "git_status": true,
+    "button": false
+  },
+  "use_system_window_tabs": false,
+  "bottom_dock_layout": "contained",
+  "preview_tabs": {
+    "enabled": false
+  },
+  "tab_bar": {
+    "show_tab_bar_buttons": false,
+    "show_nav_history_buttons": false,
+    "show": true
+  },
+  "title_bar": {
+    "show_menus": false,
+    "show_sign_in": false,
+    "show_user_picture": false,
+    "show_onboarding_banner": false,
+    "show_project_items": false,
+    "show_branch_name": true,
+    "show_branch_icon": false
+  },
+  "debugger": {
+    "button": false
+  },
+  "diagnostics": {
+    "button": false
+  },
+  "status_bar": {
+    "cursor_position_button": true,
+    "active_language_button": false
+  },
+  "ui_font_family": "JetBrains Mono",
+  "icon_theme": "Zed (Default)",
+  "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "on_yank",
+    "use_smartcase_find": true,
+    "toggle_relative_line_numbers": true,
+    "highlight_on_yank_duration": 200
+  },
+
+  // EDITOR BEHAVIOR (matching nvim options.lua)
+  "relative_line_numbers": "enabled",
+  "cursor_blink": false,
+  "vertical_scroll_margin": 10,
+  "tab_size": 2,
+  "hard_tabs": false,
+  "format_on_save": "on",
+  "autosave": "on_focus_change",
+  "show_whitespaces": "selection",
+
+  // FONTS & THEME
+  "ui_font_size": 16.0,
+  "buffer_font_size": 16,
+  "buffer_font_family": "JetBrains Mono",
+  "buffer_line_height": "comfortable",
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha"
+  },
+
+  // PROJECT PANEL (file tree on the right, like Neo-tree)
+  "project_panel": {
+    "indent_size": 10.0,
+    "sticky_scroll": false,
+    "button": false,
+    "dock": "right",
+    "default_width": 300.0,
+    "auto_reveal_entries": true,
+    "git_status": false,
+    "file_icons": true,
+    "folder_icons": false,
+    "hide_hidden": false,
+    "sort_mode": "directories_first",
+    "indent_guides": {
+      "show": "always"
+    }
+  },
+
+  // FILE EXCLUSIONS (like Telescope file_ignore_patterns)
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/node_modules",
+    "**/dist",
+    "**/build",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/*.min.js",
+    "**/*.min.mjs"
+  ],
+
+  // SEARCH
+  "search": {
+    "button": false,
+    "case_sensitive": false,
+    "include_ignored": false,
+    "regex": false
+  },
+
+  // AI (Zeta - Zed's built-in AI)
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+
+  // FORMATTING (like conform.nvim setup)
+  "languages": {
+    "TypeScript": {
+      "formatter": {
+        "external": {
+          "command": "biome",
+          "arguments": ["format", "--stdin-file-path", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "TSX": {
+      "formatter": {
+        "external": {
+          "command": "biome",
+          "arguments": ["format", "--stdin-file-path", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "JavaScript": {
+      "formatter": {
+        "external": {
+          "command": "biome",
+          "arguments": ["format", "--stdin-file-path", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "JSX": {
+      "formatter": {
+        "external": {
+          "command": "biome",
+          "arguments": ["format", "--stdin-file-path", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "JSON": {
+      "formatter": {
+        "external": {
+          "command": "biome",
+          "arguments": ["format", "--stdin-file-path", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "Lua": {
+      "formatter": {
+        "external": {
+          "command": "stylua",
+          "arguments": ["-"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "Python": {
+      "formatter": {
+        "external": {
+          "command": "ruff",
+          "arguments": ["format", "-"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "CSS": {
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "HTML": {
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on"
+    }
+  },
+
+  // TERMINAL
+  "terminal": {
+    "button": false,
+    "dock": "bottom",
+    "default_height": 320,
+    "blinking": "off",
+    "font_size": 14
+  },
+
+  // TABS
+  "tabs": {
+    "git_status": false,
+    "file_icons": false
+  },
+
+  // GIT
+  "git": {
+    "inline_blame": {
+      "enabled": true
+    }
+  },
+
+  // SCROLLBAR
+  "scrollbar": {
+    "show": "auto",
+    "git_diff": true,
+    "diagnostics": "all"
+  }
+}

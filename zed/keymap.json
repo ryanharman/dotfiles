@@ -1,0 +1,135 @@
+[
+  // ============================================
+  // NORMAL + VISUAL MODE (VimControl)
+  // ============================================
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      // Clear search highlights (like <leader>h) - uses escape to dismiss search
+      "space h": ["workspace::SendKeystrokes", "escape"],
+
+      // Diagnostics (like <leader>dd)
+      "space d d": "editor::Hover",
+
+      // LSP (remapping to match nvim setup)
+      "g r": "editor::FindAllReferences",
+      "space r n": "editor::Rename",
+      "space c a": "editor::ToggleCodeActions",
+      "space D": "editor::GoToTypeDefinition",
+      "space w s": "project_symbols::Toggle",
+
+      // Scroll + center (like <C-d>zz and <C-u>zz)
+      "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
+      "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
+
+      // Terminal toggle (like snacks.nvim <C-t>)
+      "ctrl-t": ["workspace::SendKeystrokes", "ctrl-`"]
+    }
+  },
+
+  // ============================================
+  // NORMAL MODE ONLY
+  // ============================================
+  {
+    "context": "vim_mode == normal && !menu",
+    "bindings": {
+      // Clipboard paste from system (like <leader>p)
+      "space p": "editor::Paste",
+
+      // Window navigation (like <C-hjkl> in nvim)
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight"
+    }
+  },
+
+  // ============================================
+  // VISUAL MODE
+  // ============================================
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      // Yank to clipboard (like <leader>y in visual mode)
+      "space y": "editor::Copy",
+      // Surround selection (like vim-surround)
+      "shift-s": "vim::PushAddSurrounds"
+    }
+  },
+
+  // ============================================
+  // INSERT MODE
+  // ============================================
+  {
+    "context": "vim_mode == insert",
+    "bindings": {
+      // Save file (like <C-s> in your nvim)
+      "ctrl-s": "workspace::Save"
+    }
+  },
+
+  // ============================================
+  // TERMINAL CONTEXT
+  // ============================================
+  {
+    "context": "Terminal",
+    "bindings": {
+      // Window navigation (like <C-hjkl> in nvim)
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      // Terminal toggle (send ctrl-` which works natively)
+      "ctrl-t": ["workspace::SendKeystrokes", "ctrl-`"]
+    }
+  },
+
+  // ============================================
+  // PROJECT PANEL CONTEXT
+  // ============================================
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      // Close panel with same key that opens it
+      "\\": "workspace::ToggleRightDock",
+      // Window navigation (like <C-hjkl> in nvim)
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight"
+    }
+  },
+
+  // ============================================
+  // GLOBAL (all contexts)
+  // ============================================
+  {
+    "context": "Workspace",
+    "bindings": {
+      // Terminal toggle (like snacks.nvim <C-t>, same as ctrl-`)
+      "ctrl-t": ["workspace::SendKeystrokes", "ctrl-`"],
+      // Global save
+      "ctrl-s": "workspace::Save",
+
+      // Window navigation (like <C-hjkl> in nvim)
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
+
+      // File tree toggle (like Neo-tree with \)
+      "\\": "workspace::ToggleRightDock",
+
+      // Telescope equivalents
+      "space f f": "file_finder::Toggle",
+      "space f i": "workspace::NewSearch",
+      "space f b": "tab_switcher::Toggle",
+
+      // Git (like Neogit/Diffview)
+      "space g s": "git_panel::ToggleFocus",
+      "space g c": "git::Commit",
+      "space g v": "git::Diff",
+      "ctrl-g": "git::Diff"
+    }
+  }
+]

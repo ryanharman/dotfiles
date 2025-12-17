@@ -1,0 +1,65 @@
+[
+  // ============================================
+  // VITEST
+  // ============================================
+  {
+    "label": "Vitest: Run current file",
+    "command": "pnpm",
+    "args": ["vitest", "run", "$ZED_RELATIVE_FILE"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "tags": ["vitest-file"]
+  },
+  {
+    "label": "Vitest: Run nearest test",
+    "command": "pnpm",
+    "args": ["vitest", "run", "$ZED_RELATIVE_FILE", "-t", "$ZED_SYMBOL"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "tags": ["vitest-nearest"]
+  },
+  {
+    "label": "Vitest: Watch current file",
+    "command": "pnpm",
+    "args": ["vitest", "watch", "$ZED_RELATIVE_FILE"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "tags": ["vitest-watch"]
+  },
+  {
+    "label": "Vitest: Run all tests",
+    "command": "pnpm",
+    "args": ["vitest", "run"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "tags": ["vitest-all"]
+  },
+
+  // ============================================
+  // JEST
+  // ============================================
+  {
+    "label": "Jest: Run current file",
+    "command": "npx",
+    "args": ["jest", "$ZED_RELATIVE_FILE", "--coverage", "--maxWorkers=4"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "tags": ["jest-file"]
+  },
+  {
+    "label": "Jest: Run nearest test",
+    "command": "npx",
+    "args": ["jest", "$ZED_RELATIVE_FILE", "-t", "$ZED_SYMBOL", "--maxWorkers=4"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "tags": ["jest-nearest"]
+  },
+  {
+    "label": "Jest: Watch current file",
+    "command": "npx",
+    "args": ["jest", "$ZED_RELATIVE_FILE", "--watch"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "tags": ["jest-watch"]
+  },
+  {
+    "label": "Jest: Run all tests",
+    "command": "npx",
+    "args": ["jest", "--coverage", "--maxWorkers=4"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "tags": ["jest-all"]
+  }
+]

@@ -40,16 +40,12 @@ return {
 			local servers = {
 				-- ts_ls handled by typescript-tools.nvim
 				tailwindcss = {
+					filetypes = { "html", "css", "javascriptreact", "typescriptreact", "astro" },
 					settings = {
 						tailwindCSS = {
 							validate = false,
+							classAttributes = { "class", "className" },
 						},
-					},
-				},
-				eslint = {
-					filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
-					settings = {
-						workingDirectory = { mode = "auto" },
 					},
 				},
 				biome = {},

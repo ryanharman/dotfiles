@@ -5,6 +5,7 @@ DOTFILES_DIR="$HOME/repos/dotfiles"
 SYMLINKS=(
   "$DOTFILES_DIR/nvim:$HOME/.config/nvim"
   "$DOTFILES_DIR/ghostty:$HOME/.config/ghostty/config"
+  "$DOTFILES_DIR/zed:$HOME/.config/zed"
   "$DOTFILES_DIR/.zshrc:$HOME/.zshrc"
   "$DOTFILES_DIR/.gitconfig:$HOME/.gitconfig"
 )

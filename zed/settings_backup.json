@@ -1,0 +1,185 @@
+{
+  // VIM MODE
+  "ui_font_family": "JetBrains Mono",
+  "icon_theme": "Zed (Default)",
+  "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "on_yank",
+    "use_smartcase_find": true,
+    "toggle_relative_line_numbers": true,
+    "highlight_on_yank_duration": 200
+  },
+
+  // EDITOR BEHAVIOR (matching nvim options.lua)
+  "relative_line_numbers": true,
+  "cursor_blink": true,
+  "vertical_scroll_margin": 10,
+  "tab_size": 2,
+  "hard_tabs": false,
+  "format_on_save": "on",
+  "autosave": "on_focus_change",
+  "show_whitespaces": "selection",
+
+  // FONTS & THEME
+  "ui_font_size": 16.0,
+  "buffer_font_size": 16,
+  "buffer_font_family": "JetBrains Mono",
+  "buffer_line_height": "comfortable",
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha"
+  },
+
+  // PROJECT PANEL (file tree on the right, like Neo-tree)
+  "project_panel": {
+    "dock": "right",
+    "default_width": 240,
+    "auto_reveal_entries": true,
+    "git_status": true,
+    "file_icons": true,
+    "folder_icons": true,
+    "hide_hidden": false,
+    "sort_mode": "directories_first",
+    "indent_guides": {
+      "show": "always"
+    }
+  },
+
+  // FILE EXCLUSIONS (like Telescope file_ignore_patterns)
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/node_modules",
+    "**/dist",
+    "**/build",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/*.min.js",
+    "**/*.min.mjs"
+  ],
+
+  // SEARCH
+  "search": {
+    "case_sensitive": false,
+    "include_ignored": false,
+    "regex": false
+  },
+
+  // AI (Zeta - Zed's built-in AI)
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+
+  // FORMATTING (like conform.nvim setup)
+  "languages": {
+    "TypeScript": {
+      "formatter": {
+        "external": {
+          "command": "biome",
+          "arguments": ["format", "--stdin-file-path", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "TSX": {
+      "formatter": {
+        "external": {
+          "command": "biome",
+          "arguments": ["format", "--stdin-file-path", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "JavaScript": {
+      "formatter": {
+        "external": {
+          "command": "biome",
+          "arguments": ["format", "--stdin-file-path", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "JSX": {
+      "formatter": {
+        "external": {
+          "command": "biome",
+          "arguments": ["format", "--stdin-file-path", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "JSON": {
+      "formatter": {
+        "external": {
+          "command": "biome",
+          "arguments": ["format", "--stdin-file-path", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "Lua": {
+      "formatter": {
+        "external": {
+          "command": "stylua",
+          "arguments": ["-"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "Python": {
+      "formatter": {
+        "external": {
+          "command": "ruff",
+          "arguments": ["format", "-"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "CSS": {
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on"
+    },
+    "HTML": {
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
+        }
+      },
+      "format_on_save": "on"
+    }
+  },
+
+  // TERMINAL
+  "terminal": {
+    "dock": "bottom",
+    "default_height": 320,
+    "blinking": "off",
+    "font_size": 14
+  },
+
+  // TABS
+  "tabs": {
+    "git_status": true,
+    "file_icons": true
+  },
+
+  // GIT
+  "git": {
+    "inline_blame": {
+      "enabled": true
+    }
+  },
+
+  // SCROLLBAR
+  "scrollbar": {
+    "show": "auto",
+    "git_diff": true,
+    "diagnostics": "all"
+  }
+}
