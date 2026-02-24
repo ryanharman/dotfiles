@@ -2,27 +2,27 @@
   // VIM MODE
   "agent": {
     "button": false,
-    "model_parameters": []
+    "model_parameters": [],
   },
   "collaboration_panel": {
-    "button": false
+    "button": false,
   },
   "notification_panel": {
-    "button": false
+    "button": false,
   },
   "outline_panel": {
     "git_status": true,
-    "button": false
+    "button": false,
   },
   "use_system_window_tabs": false,
   "bottom_dock_layout": "contained",
   "preview_tabs": {
-    "enabled": false
+    "enabled": false,
   },
   "tab_bar": {
     "show_tab_bar_buttons": false,
     "show_nav_history_buttons": false,
-    "show": true
+    "show": true,
   },
   "title_bar": {
     "show_menus": false,
@@ -31,17 +31,17 @@
     "show_onboarding_banner": false,
     "show_project_items": false,
     "show_branch_name": true,
-    "show_branch_icon": false
+    "show_branch_icon": false,
   },
   "debugger": {
-    "button": false
+    "button": false,
   },
   "diagnostics": {
-    "button": false
+    "button": false,
   },
   "status_bar": {
     "cursor_position_button": true,
-    "active_language_button": false
+    "active_language_button": false,
   },
   "ui_font_family": "JetBrains Mono",
   "icon_theme": "Zed (Default)",
@@ -50,19 +50,18 @@
     "use_system_clipboard": "on_yank",
     "use_smartcase_find": true,
     "toggle_relative_line_numbers": true,
-    "highlight_on_yank_duration": 200
+    "highlight_on_yank_duration": 200,
   },
-
   // EDITOR BEHAVIOR (matching nvim options.lua)
   "relative_line_numbers": "enabled",
   "cursor_blink": false,
   "vertical_scroll_margin": 10,
   "tab_size": 2,
   "hard_tabs": false,
+  "formatter": "language_server",
   "format_on_save": "on",
   "autosave": "on_focus_change",
   "show_whitespaces": "selection",
-
   // FONTS & THEME
   "ui_font_size": 16.0,
   "buffer_font_size": 16,
@@ -71,9 +70,8 @@
   "theme": {
     "mode": "system",
     "light": "Catppuccin Latte",
-    "dark": "Catppuccin Mocha"
+    "dark": "Catppuccin Mocha",
   },
-
   // PROJECT PANEL (file tree on the right, like Neo-tree)
   "project_panel": {
     "indent_size": 10.0,
@@ -88,10 +86,9 @@
     "hide_hidden": false,
     "sort_mode": "directories_first",
     "indent_guides": {
-      "show": "always"
-    }
+      "show": "always",
+    },
   },
-
   // FILE EXCLUSIONS (like Telescope file_ignore_patterns)
   "file_scan_exclusions": [
     "**/.git",
@@ -101,133 +98,156 @@
     "**/.DS_Store",
     "**/Thumbs.db",
     "**/*.min.js",
-    "**/*.min.mjs"
+    "**/*.min.mjs",
   ],
-
   // SEARCH
   "search": {
     "button": false,
     "case_sensitive": false,
     "include_ignored": false,
-    "regex": false
+    "regex": false,
   },
-
   // AI (Zeta - Zed's built-in AI)
   "features": {
-    "edit_prediction_provider": "zed"
+    "edit_prediction_provider": "zed",
   },
-
   // FORMATTING (like conform.nvim setup)
   "languages": {
     "TypeScript": {
+      "language_servers": [
+        "typescript-language-server",
+        "biome"
+      ],
       "formatter": {
         "external": {
-          "command": "biome",
-          "arguments": ["format", "--stdin-file-path", "{buffer_path}"]
+          "command": "npx",
+          "arguments": ["biome", "check", "--write", "--stdin-file-path", "{buffer_path}"]
         }
       },
-      "format_on_save": "on"
+      "format_on_save": "on",
     },
     "TSX": {
+      "language_servers": [
+        "typescript-language-server",
+        "biome"
+      ],
       "formatter": {
         "external": {
-          "command": "biome",
-          "arguments": ["format", "--stdin-file-path", "{buffer_path}"]
+          "command": "npx",
+          "arguments": ["biome", "check", "--write", "--stdin-file-path", "{buffer_path}"]
         }
       },
-      "format_on_save": "on"
+      "format_on_save": "on",
     },
     "JavaScript": {
+      "language_servers": [
+        "typescript-language-server",
+        "biome"
+      ],
       "formatter": {
         "external": {
-          "command": "biome",
-          "arguments": ["format", "--stdin-file-path", "{buffer_path}"]
+          "command": "npx",
+          "arguments": ["biome", "check", "--write", "--stdin-file-path", "{buffer_path}"]
         }
       },
-      "format_on_save": "on"
+      "format_on_save": "on",
     },
     "JSX": {
+      "language_servers": [
+        "typescript-language-server",
+        "biome"
+      ],
       "formatter": {
         "external": {
-          "command": "biome",
-          "arguments": ["format", "--stdin-file-path", "{buffer_path}"]
+          "command": "npx",
+          "arguments": ["biome", "check", "--write", "--stdin-file-path", "{buffer_path}"]
         }
       },
-      "format_on_save": "on"
+      "format_on_save": "on",
     },
     "JSON": {
+      "language_servers": [
+        "biome"
+      ],
       "formatter": {
         "external": {
-          "command": "biome",
-          "arguments": ["format", "--stdin-file-path", "{buffer_path}"]
+          "command": "npx",
+          "arguments": ["biome", "check", "--write", "--stdin-file-path", "{buffer_path}"]
         }
       },
-      "format_on_save": "on"
+      "format_on_save": "on",
     },
     "Lua": {
       "formatter": {
         "external": {
           "command": "stylua",
-          "arguments": ["-"]
-        }
+          "arguments": [
+            "-"
+          ],
+        },
       },
-      "format_on_save": "on"
+      "format_on_save": "on",
     },
     "Python": {
       "formatter": {
         "external": {
           "command": "ruff",
-          "arguments": ["format", "-"]
-        }
+          "arguments": [
+            "format",
+            "-"
+          ],
+        },
       },
-      "format_on_save": "on"
+      "format_on_save": "on",
     },
     "CSS": {
       "formatter": {
         "external": {
           "command": "prettier",
-          "arguments": ["--stdin-filepath", "{buffer_path}"]
-        }
+          "arguments": [
+            "--stdin-filepath",
+            "{buffer_path}"
+          ],
+        },
       },
-      "format_on_save": "on"
+      "format_on_save": "on",
     },
     "HTML": {
       "formatter": {
         "external": {
           "command": "prettier",
-          "arguments": ["--stdin-filepath", "{buffer_path}"]
-        }
+          "arguments": [
+            "--stdin-filepath",
+            "{buffer_path}"
+          ],
+        },
       },
-      "format_on_save": "on"
-    }
+      "format_on_save": "on",
+    },
   },
-
   // TERMINAL
   "terminal": {
     "button": false,
     "dock": "bottom",
     "default_height": 320,
     "blinking": "off",
-    "font_size": 14
+    "font_size": 14,
   },
-
   // TABS
   "tabs": {
     "git_status": false,
-    "file_icons": false
+    "file_icons": false,
   },
-
   // GIT
   "git": {
     "inline_blame": {
-      "enabled": true
-    }
+      "enabled": true,
+    },
   },
-
   // SCROLLBAR
   "scrollbar": {
     "show": "auto",
     "git_diff": true,
-    "diagnostics": "all"
-  }
+    "diagnostics": "all",
+  },
 }

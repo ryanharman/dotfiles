@@ -21,12 +21,15 @@ local function find_workspace_packages(start_dir)
 	for _, line in ipairs(content) do
 		if line:match("^packages:") then
 			in_packages = true
-		elseif in_packages and line:match("^%s*-%s*'(.+)'") then
-			local pattern = line:match("^%s*-%s*'(.+)'")
-			local glob_pattern = start_dir .. "/" .. pattern
-			local dirs = vim.fn.glob(glob_pattern, false, true)
-			for _, dir in ipairs(dirs) do
-				table.insert(packages, dir)
+		elseif in_packages and line:match("^%s*-") then
+			-- Match quoted ('...', "...") or unquoted package patterns
+			local pattern = line:match("^%s*-%s*['\"]?([^'\"]+)['\"]?%s*$")
+			if pattern then
+				local glob_pattern = start_dir .. "/" .. pattern
+				local dirs = vim.fn.glob(glob_pattern, false, true)
+				for _, dir in ipairs(dirs) do
+					table.insert(packages, dir)
+				end
 			end
 		elseif in_packages and line:match("^[^%s]") then
 			break
@@ -111,10 +114,30 @@ local function get_test_adapters()
 	end
 
 	if has_vitest then
+		local vitest_config_patterns = {
+			"vitest.config.ts",
+			"vitest.config.mts",
+			"vitest.config.js",
+			"vitest.config.mjs",
+			"vitest.config.cjs",
+		}
+
 		table.insert(adapters, require("neotest-vitest")({
 			vitestCommand = "pnpm vitest",
 			cwd = function(path)
-				return require("lspconfig.util").root_pattern("vitest.config.js", "vitest.config.ts", "vitest.config.mts", "vitest.config.mjs", "vitest.config.cjs")(path)
+				return require("lspconfig.util").root_pattern(unpack(vitest_config_patterns))(path)
+			end,
+			vitestConfigFile = function(path)
+				local root = require("lspconfig.util").root_pattern(unpack(vitest_config_patterns))(path)
+				if root then
+					for _, config_file in ipairs(vitest_config_patterns) do
+						local config_path = root .. "/" .. config_file
+						if file_exists(config_path) then
+							return config_path
+						end
+					end
+				end
+				return nil
 			end,
 		}))
 		vim.notify("Neotest: Using Vitest adapter", vim.log.levels.INFO, { title = "Neotest" })

@@ -14,7 +14,7 @@ brew "ripgrep"
 brew "sst"
 brew "oven-sh/bun/bun"
 brew "zsh"
+brew "uv"
 cask "aws-vault-binary"
 cask "docker-desktop"
 cask "ghostty"
-

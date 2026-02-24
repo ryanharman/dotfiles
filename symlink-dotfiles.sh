@@ -8,6 +8,7 @@ SYMLINKS=(
   "$DOTFILES_DIR/zed:$HOME/.config/zed"
   "$DOTFILES_DIR/.zshrc:$HOME/.zshrc"
   "$DOTFILES_DIR/.gitconfig:$HOME/.gitconfig"
+  "$DOTFILES_DIR/ssh-config:$HOME/.ssh/config"
 )
 
 # Function to create or update symlink

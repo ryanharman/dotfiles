@@ -58,15 +58,28 @@ return {
 						},
 					},
 				},
-				basedpyright = {
-					settings = {
-						basedpyright = {
-							analysis = {
-								typeCheckingMode = "standard",
-							},
+			basedpyright = {
+				root_dir = function(fname)
+					local util = require("lspconfig.util")
+					-- Prefer git root to handle monorepos with workspace members
+					return util.find_git_ancestor(fname)
+						or util.root_pattern("pyproject.toml", "pyrightconfig.json")(fname)
+				end,
+				before_init = function(_, config)
+					local venv_path = config.root_dir .. "/.venv"
+					if vim.fn.isdirectory(venv_path) == 1 then
+						config.settings.python = config.settings.python or {}
+						config.settings.python.pythonPath = venv_path .. "/bin/python"
+					end
+				end,
+				settings = {
+					basedpyright = {
+						analysis = {
+							typeCheckingMode = "standard",
 						},
 					},
 				},
+			},
 			}
 
 			require("mason").setup()
