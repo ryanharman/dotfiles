@@ -60,3 +60,11 @@ antidote load $HOME/repos/dotfiles/.zsh_plugins
 
 # pipx
 export PATH="$PATH:$HOME/.local/bin"
+
+# pnpm
+export PNPM_HOME="/Users/ryanharman/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

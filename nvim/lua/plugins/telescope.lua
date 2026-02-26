@@ -1,6 +1,6 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	tag = "0.1.8",
+	branch = "0.1.x",
 	cmd = "Telescope",
 	keys = {
 		{ "<leader>ff", desc = "Find files" },
