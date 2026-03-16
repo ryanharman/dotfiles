@@ -37,6 +37,11 @@ vim.opt.tabstop = 2
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+-- Folding (treesitter-based folding is enabled per-buffer in treesitter.lua)
+vim.opt.foldlevel = 99 -- Start with all folds open
+vim.opt.foldlevelstart = 99 -- Same for new buffers
+vim.opt.foldenable = true -- Enable folding
+
 -- Command execution
 vim.opt.inccommand = "split"
 

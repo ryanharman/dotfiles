@@ -23,7 +23,17 @@
       "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
 
       // Terminal toggle (like snacks.nvim <C-t>)
-      "ctrl-t": ["workspace::SendKeystrokes", "ctrl-`"]
+      "ctrl-t": ["workspace::SendKeystrokes", "ctrl-`"],
+
+      // Telescope equivalents (moved from Workspace to prevent space conflicts)
+      "space f f": "file_finder::Toggle",
+      "space f i": "workspace::NewSearch",
+      "space f b": "tab_switcher::Toggle",
+
+      // Git (like Neogit/Diffview)
+      "space g s": "git_panel::ToggleFocus",
+      "space g c": "git::Commit",
+      "space g v": "git::Diff"
     }
   },
 
@@ -120,15 +130,7 @@
       // File tree toggle (like Neo-tree with \)
       "\\": "workspace::ToggleRightDock",
 
-      // Telescope equivalents
-      "space f f": "file_finder::Toggle",
-      "space f i": "workspace::NewSearch",
-      "space f b": "tab_switcher::Toggle",
-
-      // Git (like Neogit/Diffview)
-      "space g s": "git_panel::ToggleFocus",
-      "space g c": "git::Commit",
-      "space g v": "git::Diff",
+      // Git diff (ctrl modifier doesn't conflict with typing)
       "ctrl-g": "git::Diff"
     }
   }

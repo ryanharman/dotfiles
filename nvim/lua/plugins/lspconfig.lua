@@ -3,15 +3,16 @@ return {
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
-			{ "mason-org/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
+			{ "mason-org/mason.nvim", config = true },
 			"mason-org/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			{ "j-hui/fidget.nvim", opts = {} },
 			"saghen/blink.cmp",
 		},
 		config = function()
+			-- LSP Keymaps - attached when an LSP connects to a buffer
 			vim.api.nvim_create_autocmd("LspAttach", {
-				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+				group = vim.api.nvim_create_augroup("lsp-attach-keymaps", { clear = true }),
 				callback = function(event)
 					local map = function(keys, func, desc, mode)
 						mode = mode or "n"
@@ -24,46 +25,54 @@ return {
 					map("<leader>ws", function() require("telescope.builtin").lsp_dynamic_workspace_symbols() end, "[W]orkspace [S]ymbols")
 					map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 					map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
-					-- WARN: This is not Goto Definition, this is Goto Declaration.
-					--  For example, in C this would take you to the header.
 					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 				end,
 			})
 
-			-- LSP servers and clients are able to communicate to each other what features they support.
-			--  By default, Neovim doesn't support everything that is in the LSP specification.
-			--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-			--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-			-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+			-- Get blink.cmp capabilities for LSP completion support
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-			local servers = {
-				-- ts_ls handled by typescript-tools.nvim
-				tailwindcss = {
-					filetypes = { "html", "css", "javascriptreact", "typescriptreact", "astro" },
-					settings = {
-						tailwindCSS = {
-							validate = false,
-							classAttributes = { "class", "className" },
+			-- NOTE: TypeScript/JavaScript LSP is handled by typescript-tools.nvim
+			-- Do NOT add ts_ls here or it will conflict
+
+			-- Configure LSP servers using the new vim.lsp.config() API (Neovim 0.11+)
+			vim.lsp.config("tailwindcss", {
+				capabilities = capabilities,
+				filetypes = { "html", "css", "javascriptreact", "typescriptreact", "astro" },
+				settings = {
+					tailwindCSS = {
+						validate = false,
+						classAttributes = { "class", "className" },
+					},
+				},
+			})
+
+			vim.lsp.config("biome", {
+				capabilities = capabilities,
+			})
+
+			vim.lsp.config("lua_ls", {
+				capabilities = capabilities,
+				settings = {
+					Lua = {
+						completion = {
+							callSnippet = "Replace",
 						},
 					},
 				},
-				biome = {},
-				lua_ls = {
-					settings = {
-						Lua = {
-							completion = {
-								callSnippet = "Replace",
-							},
-						},
-					},
-				},
-			basedpyright = {
-				root_dir = function(fname)
+			})
+
+			vim.lsp.config("basedpyright", {
+				capabilities = capabilities,
+				root_dir = function(bufnr, on_dir)
+					local fname = vim.api.nvim_buf_get_name(bufnr)
 					local util = require("lspconfig.util")
 					-- Prefer git root to handle monorepos with workspace members
-					return util.find_git_ancestor(fname)
+					local root = util.find_git_ancestor(fname)
 						or util.root_pattern("pyproject.toml", "pyrightconfig.json")(fname)
+					if root then
+						on_dir(root)
+					end
 				end,
 				before_init = function(_, config)
 					local venv_path = config.root_dir .. "/.venv"
@@ -79,27 +88,37 @@ return {
 						},
 					},
 				},
-			},
-			}
+			})
 
+			vim.lsp.config("cssls", {
+				capabilities = capabilities,
+			})
+
+			vim.lsp.config("astro", {
+				capabilities = capabilities,
+			})
+
+			-- Mason setup
 			require("mason").setup()
 
-			local ensure_installed = vim.tbl_keys(servers or {})
-			vim.list_extend(ensure_installed, {
-				"stylua", -- Used to format Lua code
-				"astro",
-				"cssls",
+			-- Ensure formatters/linters are installed
+			require("mason-tool-installer").setup({
+				ensure_installed = {
+					"stylua", -- Lua formatter
+				},
 			})
-			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
+			-- mason-lspconfig with automatic_enable (Neovim 0.11+ feature)
+			-- This automatically calls vim.lsp.enable() for installed servers
 			require("mason-lspconfig").setup({
-				automatic_installation = true,
-				handlers = {
-					function(server_name)
-						local server = servers[server_name] or {}
-						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
-					end,
+				automatic_enable = true,
+				ensure_installed = {
+					"tailwindcss",
+					"biome",
+					"lua_ls",
+					"basedpyright",
+					"cssls",
+					"astro",
 				},
 			})
 		end,
