@@ -1,3 +1,6 @@
+-- Font and icons
+vim.g.have_nerd_font = true -- Set to false if no Nerd Font is installed
+
 -- File handling
 vim.opt.autoread = true
 vim.opt.autowrite = true
@@ -37,7 +40,8 @@ vim.opt.tabstop = 2
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
--- Folding (treesitter-based folding is enabled per-buffer in treesitter.lua)
+-- Folding (manual)
+vim.opt.foldmethod = "manual"
 vim.opt.foldlevel = 99 -- Start with all folds open
 vim.opt.foldlevelstart = 99 -- Same for new buffers
 vim.opt.foldenable = true -- Enable folding

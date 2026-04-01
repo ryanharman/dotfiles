@@ -42,24 +42,6 @@ return {
 					disable = { "yaml" }, -- yaml indent can be slow
 				},
 			})
-
-			-- Enable treesitter-based folding (native Neovim feature)
-			-- This runs after treesitter setup to enable folding per-buffer
-			vim.api.nvim_create_autocmd("FileType", {
-				group = vim.api.nvim_create_augroup("treesitter-folding", { clear = true }),
-				callback = function(args)
-					local buf = args.buf
-
-					-- Skip special buffers
-					if vim.bo[buf].buftype ~= "" then
-						return
-					end
-
-					-- Enable treesitter folding for this window
-					vim.wo[0].foldmethod = "expr"
-					vim.wo[0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
-				end,
-			})
 		end,
 	},
 }
