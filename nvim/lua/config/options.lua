@@ -21,6 +21,9 @@ vim.opt.scrolloff = 10
 vim.opt.updatetime = 300
 vim.opt.timeoutlen = 500
 vim.opt.ttimeoutlen = 10
+vim.opt.wrap = false
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 
 -- Performance optimizations
 vim.opt.synmaxcol = 240

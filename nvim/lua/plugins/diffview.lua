@@ -7,10 +7,17 @@ return {
 			{ "<leader>gv", "<CMD>DiffviewOpen<CR>", mode = { "n" }, desc = "Open diffview" },
 			{ "<leader>gd", "<CMD>DiffviewOpen main...HEAD<CR>", desc = "Diff current branch against main" },
 		},
-		config = {
+		opts = {
+			enhanced_diff_hl = true,
+			watch_index = true,
 			file_panel = {
 				win_config = {
 					position = "right",
+				},
+			},
+			view = {
+				default = {
+					winbar_info = true,
 				},
 			},
 			keymaps = {

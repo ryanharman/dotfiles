@@ -5,7 +5,10 @@ return {
     config = function()
       local wk = require("which-key")
       wk.add({
-        { "<leader>f", group = "telescope" }, -- group
+        { "<leader>f", group = "picker" },
+        { "<leader>g", group = "git" },
+        { "<leader>h", group = "hunks" },
+        { "<leader>t", group = "test" },
         { "<leader>\\", desc = "Neotree" },
       })
     end,

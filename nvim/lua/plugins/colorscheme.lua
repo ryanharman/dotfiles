@@ -16,11 +16,9 @@ return {
 					enabled = true,
 					indentscope_color = "lavender",
 				},
-				neogit = true,
 				neotree = true,
 				neotest = true,
 				snacks = true,
-				telescope = { enabled = true },
 				treesitter = true,
 				which_key = true,
 				native_lsp = {

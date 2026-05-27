@@ -1,11 +1,9 @@
 -- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
 	callback = function()
-		vim.highlight.on_yank()
+		vim.hl.on_yank()
 	end,
 })
 
@@ -35,4 +33,20 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	desc = "Get rid of message after writing a file",
 	pattern = { "*" },
 	command = "redrawstatus",
+})
+
+-- Stop LSP clients on non-file buffers (diffview://, fugitive://, gitsigns://)
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("lsp_detach_non_file_bufs", { clear = true }),
+	callback = function(args)
+		local name = vim.api.nvim_buf_get_name(args.buf)
+		if name:match("^%w+://") then
+			vim.schedule(function()
+				local client = vim.lsp.get_client_by_id(args.data.client_id)
+				if client then
+					client:stop()
+				end
+			end)
+		end
+	end,
 })

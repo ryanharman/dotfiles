@@ -28,6 +28,7 @@ alias gb="git branch"
 alias lines="git ls-files | xargs cat | wc -l"
 alias nv="nvim"
 alias rebase-main='git fetch origin main && git rebase origin/main'
+alias p="pnpm"
 
 dotfiles="$HOME/repos/dotfiles"
 
