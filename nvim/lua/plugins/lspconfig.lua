@@ -31,32 +31,77 @@ return {
 			-- Get blink.cmp capabilities for LSP completion support
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-			-- Configure LSP servers using the new vim.lsp.config() API (Neovim 0.11+)
+			-- TypeScript LSP — swap with :TsSwap <tsgo|vtsls>
+			-- tsgo: Microsoft Go port (preview). Install: npm i -g @typescript/native-preview
+			-- vtsls: stable tsserver wrapper. Installed via mason.
+			local ts_inlay_hints = {
+				parameterNames = { enabled = "literals" },
+				parameterTypes = { enabled = true },
+				variableTypes = { enabled = false },
+				propertyDeclarationTypes = { enabled = true },
+				functionLikeReturnTypes = { enabled = true },
+				enumMemberValues = { enabled = true },
+			}
+
+			vim.lsp.config("tsgo", {
+				capabilities = capabilities,
+			})
+
 			vim.lsp.config("vtsls", {
 				capabilities = capabilities,
 				settings = {
-					typescript = {
-						inlayHints = {
-							parameterNames = { enabled = "literals" },
-							parameterTypes = { enabled = true },
-							variableTypes = { enabled = false },
-							propertyDeclarationTypes = { enabled = true },
-							functionLikeReturnTypes = { enabled = true },
-							enumMemberValues = { enabled = true },
-						},
-					},
-					javascript = {
-						inlayHints = {
-							parameterNames = { enabled = "literals" },
-							parameterTypes = { enabled = true },
-							variableTypes = { enabled = false },
-							propertyDeclarationTypes = { enabled = true },
-							functionLikeReturnTypes = { enabled = true },
-							enumMemberValues = { enabled = true },
-						},
-					},
+					typescript = { inlayHints = ts_inlay_hints },
+					javascript = { inlayHints = ts_inlay_hints },
 				},
 			})
+
+			-- Default: tsgo. Override via :TsSwap.
+			vim.lsp.enable("tsgo")
+
+			local function ts_swap(target)
+				if target ~= "tsgo" and target ~= "vtsls" then
+					vim.notify("TsSwap: use 'tsgo' or 'vtsls'", vim.log.levels.ERROR)
+					return
+				end
+				local other = target == "tsgo" and "vtsls" or "tsgo"
+				for _, client in ipairs(vim.lsp.get_clients({ name = other })) do
+					client:stop(true)
+				end
+				vim.lsp.enable(other, false)
+				vim.lsp.enable(target)
+				vim.notify("TS LSP → " .. target, vim.log.levels.INFO)
+				vim.schedule(function()
+					for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+						local ft = vim.bo[buf].filetype
+						if ft:match("^typescript") or ft:match("^javascript") then
+							vim.api.nvim_buf_call(buf, function()
+								vim.cmd("edit")
+							end)
+						end
+					end
+				end)
+			end
+
+			local function ts_active()
+				if #vim.lsp.get_clients({ name = "vtsls" }) > 0 then
+					return "vtsls"
+				end
+				return "tsgo"
+			end
+
+			vim.api.nvim_create_user_command("TsSwap", function(args)
+				ts_swap(args.args)
+			end, {
+				nargs = 1,
+				complete = function()
+					return { "tsgo", "vtsls" }
+				end,
+				desc = "Swap TypeScript LSP between tsgo and vtsls",
+			})
+
+			vim.keymap.set("n", "<leader>lt", function()
+				ts_swap(ts_active() == "tsgo" and "vtsls" or "tsgo")
+			end, { desc = "Toggle TS LSP (tsgo ↔ vtsls)" })
 
 			vim.lsp.config("tailwindcss", {
 				capabilities = capabilities,
@@ -138,7 +183,8 @@ return {
 			-- mason-lspconfig with automatic_enable (Neovim 0.11+ feature)
 			-- This automatically calls vim.lsp.enable() for installed servers
 			require("mason-lspconfig").setup({
-				automatic_enable = true,
+				-- vtsls installed but not auto-enabled; tsgo is default. Swap via :TsSwap.
+				automatic_enable = { exclude = { "vtsls" } },
 				ensure_installed = {
 					"vtsls",
 					"tailwindcss",

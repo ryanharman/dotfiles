@@ -8,6 +8,7 @@ return {
         { "<leader>f", group = "picker" },
         { "<leader>g", group = "git" },
         { "<leader>h", group = "hunks" },
+        { "<leader>l", group = "lsp" },
         { "<leader>t", group = "test" },
         { "<leader>\\", desc = "Neotree" },
       })

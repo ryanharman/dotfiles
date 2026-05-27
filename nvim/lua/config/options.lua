@@ -55,6 +55,10 @@ vim.opt.inccommand = "split"
 -- Input
 vim.opt.mouse = "a"
 
+-- Project-local config files (.nvim.lua / .nvimrc / .exrc)
+-- Prompts for trust on first load
+vim.opt.exrc = true
+
 -- Disable unused providers for faster startup
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
