@@ -69,3 +69,9 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# sentry
+fpath=("/Users/ryanharman/.local/share/zsh/site-functions" $fpath)
+
+# GitHub MCP token for Claude Code (sources existing gh login at shell start)
+export GITHUB_PERSONAL_ACCESS_TOKEN="$(gh auth token)"

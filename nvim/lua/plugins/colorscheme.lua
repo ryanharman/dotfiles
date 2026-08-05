@@ -12,10 +12,7 @@ return {
 				diffview = true,
 				gitsigns = true,
 				mason = true,
-				mini = {
-					enabled = true,
-					indentscope_color = "lavender",
-				},
+				mini = { enabled = true },
 				neotree = true,
 				neotest = true,
 				snacks = true,

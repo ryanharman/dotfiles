@@ -5,9 +5,14 @@ return {
 	opts = {
 		bigfile = { enabled = true },
 		dashboard = { enabled = true },
-		image = { enabled = true },
+		gitbrowse = { enabled = true },
+		indent = { enabled = true },
 		input = { enabled = true, icon = "" },
 		notifier = { enabled = true },
+		quickfile = { enabled = true },
+		scope = { enabled = true },
+		scratch = { enabled = true },
+		words = { enabled = true },
 		picker = {
 			enabled = true,
 			ui_select = true,
@@ -45,6 +50,9 @@ return {
 		{ "<leader>fc", function() Snacks.picker.commands() end, desc = "Commands" },
 		{ "<leader>f:", function() Snacks.picker.command_history() end, desc = "Command history" },
 		{ "<leader>fR", function() Snacks.picker.resume() end, desc = "Resume last picker" },
+		-- Misc
+		{ "<leader>.", function() Snacks.scratch() end, desc = "Toggle scratch buffer" },
+		{ "<leader>gB", function() Snacks.gitbrowse() end, desc = "Open in GitHub", mode = { "n", "v" } },
 	},
 	config = function(_, opts)
 		require("snacks").setup(opts)

@@ -1,7 +1,11 @@
 return {
 	"nvim-mini/mini.nvim",
+	lazy = false,
+	priority = 900,
 	config = function()
-		-- NOTE: mini.comment removed - using ts-comments.nvim for better JSX/TSX support
+		require("mini.icons").setup()
+		MiniIcons.mock_nvim_web_devicons()
+
 		require("mini.pairs").setup()
 		require("mini.move").setup()
 
