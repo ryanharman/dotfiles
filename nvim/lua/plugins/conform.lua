@@ -15,6 +15,10 @@ return {
 				json = { "prettierd", "prettier", stop_after_first = true },
 				python = { "ruff" },
 			},
+			formatters = {
+				-- Only run biome in projects with a biome config, else fall through to prettier
+				["biome-check"] = { require_cwd = true },
+			},
 			format_on_save = {
 				-- These options will be passed to conform.format()
 				timeout_ms = 1000,

@@ -70,15 +70,22 @@ return {
 			return rel_path
 		end
 
-		-- 🧼 Remove section backgrounds
-		for _, group in ipairs({
-			"MiniStatuslineModeNormal",
-			"MiniStatuslineDevinfo",
-			"MiniStatuslineFileinfo",
-			"MiniStatuslineLocation",
-		}) do
-			vim.api.nvim_set_hl(0, group, { link = "Normal" })
+		-- 🧼 Remove section backgrounds (reapplied on every colorscheme change)
+		local function clear_statusline_bg()
+			for _, group in ipairs({
+				"MiniStatuslineModeNormal",
+				"MiniStatuslineDevinfo",
+				"MiniStatuslineFileinfo",
+				"MiniStatuslineLocation",
+			}) do
+				vim.api.nvim_set_hl(0, group, { link = "Normal" })
+			end
 		end
+		clear_statusline_bg()
+		vim.api.nvim_create_autocmd("ColorScheme", {
+			group = vim.api.nvim_create_augroup("mini_statusline_bg", { clear = true }),
+			callback = clear_statusline_bg,
+		})
 
 		-- 🚀 Setup statusline
 		statusline.setup({

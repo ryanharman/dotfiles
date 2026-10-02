@@ -11,7 +11,7 @@
 [push]
   autoSetupRemote = true
 [pull]
-  rebase = false
+	rebase = true
 [rerere]
 	enabled = true
 [protocol "file"]
