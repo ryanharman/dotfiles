@@ -49,9 +49,6 @@ npm() { nvm_lazy_load; npm "$@"; }
 npx() { nvm_lazy_load; npx "$@"; }
 yarn() { nvm_lazy_load; yarn "$@"; }
 
-# sst
-export PATH=$HOME/.sst/bin:$PATH
-
 # python env
 alias python=/usr/bin/python3
 
