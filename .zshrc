@@ -40,8 +40,9 @@ DEFAULT_NODE_VERSION=$(ls -1 "$NVM_DIR/versions/node" | tail -1)
 export PATH="$NVM_DIR/versions/node/$DEFAULT_NODE_VERSION/bin:$PATH"
 nvm_lazy_load() {
   unset -f nvm node npm npx yarn
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  local nvm_prefix="$(brew --prefix)/opt/nvm"
+  [ -s "$nvm_prefix/nvm.sh" ] && \. "$nvm_prefix/nvm.sh"
+  [ -s "$nvm_prefix/etc/bash_completion.d/nvm" ] && \. "$nvm_prefix/etc/bash_completion.d/nvm"
 }
 nvm() { nvm_lazy_load; nvm "$@"; }
 node() { nvm_lazy_load; node "$@"; }
